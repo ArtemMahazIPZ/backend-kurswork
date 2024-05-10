@@ -11,7 +11,8 @@ if (isset($_GET['route']))
 else
     $route = '';
 
-$router = \core\Core::get();
+
+$router= \core\Core::get();
 $router->run($route);
 $router->done();
 

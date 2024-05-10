@@ -163,7 +163,7 @@ $this->Title = 'Головна сторінка';
         <div class="row">
             <div class="col-lg-4 col-md-12 col-12">
                 <div class="director-img">
-                    <img src="/photos/victorichka.png" alt="" class="img-fluid">
+                    <img src="/photos/victorichka67.png" alt="" class="img-fluid">
                 </div>
             </div>
             <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
@@ -301,7 +301,7 @@ $this->Title = 'Головна сторінка';
             <div class="col-12 col-md-6 col-lg-3">
                 <div class="card text-center">
                     <div class="card-body">
-                        <img src="/photos/bulyga.jpg" alt="" class="img-fluid rounded-circle">
+                        <img src="/photos/fizruk.jpg" alt="" class="img-fluid rounded-circle">
                         <h3 class="card-title py-2">Непийпиво Юрій Богданович</h3>
                         <p class="card-text">Вчитель фізкультури</p>
                     </div>
