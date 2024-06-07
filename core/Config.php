@@ -34,8 +34,6 @@ class Config
     {
         if (empty(self::$instance))
             self::$instance = new self();
-        var_dump(self::$instance->params);
-        die;
         return self::$instance;
     }
 
