@@ -1,8 +1,13 @@
 <?php
 /** @var string $Title */
 /** @var string $Content */
+
+use models\Users;
+
 if (empty($Title))
     $Title = '';
+if (empty($Content))
+    $Content = '';
 ?>
 <!doctype html>
 <html lang="en">
@@ -25,16 +30,17 @@ if (empty($Title))
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <style>
-    .login-button {
+    .login-button, .logout-button {
         background-color: darkorange;
         color: white;
         font-size: 14px;
         padding: 8px 20px;
         border-radius: 50px;
         text-decoration: none;
+        margin-left: 10px;
     }
 
-    .login-button:hover {
+    .login-button:hover, .logout-button:hover {
         background-color: yellow;
     }
     .navbar-brand{
@@ -76,6 +82,10 @@ if (empty($Title))
         display: none !important;
     }
 
+    .dropdown.text-end {
+        margin-right: 20px; /* Зміщення лівіше */
+    }
+
 </style>
 <body>
 <div class="container">
@@ -94,17 +104,17 @@ if (empty($Title))
                                 <a class="nav-link dropdown-toggle mx-lg-2 active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Про нас
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="#">Історія закладу</a></li>
                                     <li><a class="dropdown-item" href="#">Вище керівництво</a></li>
                                     <li><a class="dropdown-item" href="#">Вчителі</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle mx-lg-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle mx-lg-2" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Наші учні
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown2">
                                     <li><a class="dropdown-item" href="#">5 клас</a></li>
                                     <li><a class="dropdown-item" href="#">6 клас</a></li>
                                     <li><a class="dropdown-item" href="#">7 клас</a></li>
@@ -123,14 +133,23 @@ if (empty($Title))
                             <li class="nav-item">
                                 <a class="nav-link mx-lg-2" href="#">Контакти</a>
                             </li>
-
                         </ul>
                     </div>
                 </div>
-                <a href="#" class="login-button">Увійти в акаунт</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <?php if (Users::IsUserLogged()) : ?>
+                    <div class="dropdown text-end" style="margin-right: 20px;">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end text-small shadow">
+                            <li><a class="dropdown-item" href="#">Новий проект...</a></li>
+                            <li><a class="dropdown-item" href="#">Налаштування</a></li>
+                            <li><a class="dropdown-item" href="#">Профіль</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/users/logout">Вийти</a></li>
+                        </ul>
+                    </div>
+                <?php endif; ?>
             </div>
         </nav>
     </header>

@@ -37,6 +37,32 @@ class DB
         $values = array_merge(array_values($data), array_values($where));
         $stmt->execute($values);
     }
+    public function delete($table, $where)
+    {
+        $whereClause = implode(' = ? AND ', array_keys($where)) . ' = ?';
+        $sql = "DELETE FROM $table WHERE $whereClause";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(array_values($where));
+    }
+    public function select($table, $fields = '*', $where = [], $limit = null, $offset = null)
+    {
+        $sql = "SELECT $fields FROM $table";
+        if (!empty($where)) {
+            $whereClause = implode(' = ? AND ', array_keys($where)) . ' = ?';
+            $sql .= " WHERE $whereClause";
+        }
+        if ($limit) {
+            $sql .= " LIMIT $limit";
+        }
+        if ($offset) {
+            $sql .= " OFFSET $offset";
+        }
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(array_values($where));
+
+        return $stmt->fetchAll();
+    }
 
     public function lastInsertId()
     {
